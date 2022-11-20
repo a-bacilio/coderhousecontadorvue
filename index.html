@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      id="app"
+      class="w-full p-10 bg-neutral-200 flex min-h-screen flex-row items-center justify-center"
+    >
+      <div class="w-full max-w-lg rounded-lg shadow-xl p-10 bg-white">
+        <h1 class="text-2xl font-bold mb-5">{{bienvenida}}</h1>
+        <div style="width: 18rem">
+          <div class="card-body flex flex-row items-center justify-center mb-5">
+            <h2 class="text-xl">Actualmente el resultado es:</h2>
+            <span class="text-2xl font-bold p-2 bg-black text-white ml-5"
+              >{{valorcalculado}}</span
+            >
+          </div>
+          <div class="text-lg">
+            <div>Cambiar el valor</div>
+            <div class="flex flex-row justify-between w-full">
+              <button
+                class="text-2xl font-bold p-2 bg-black text-white w-16 text-center cursor-pointer"
+                v-on:click="aumentar"
+              >
+                +
+              </button>
+              <input
+                type="number"
+                name="valordecambio"
+                v-model="valordecambio"
+                class="w-16 text-center rounded-lg font-bold border-2"
+              />
+              <button
+                class="text-2xl font-bold p-2 bg-black text-white w-16 text-center cursor-pointer"
+                @click="disminuir"
+              >
+                -
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+      let app = new Vue({
+        el: "#app",
+        data: {
+          bienvenida: "Contador de Anthony en Vue",
+          valoractual: 0,
+          valordecambio: 0,
+        },
+        methods: {
+          aumentar() {
+            this.valoractual =
+              parseInt(this.valoractual) + parseInt(this.valordecambio);
+            return this.valoractual;
+          },
+          disminuir() {
+            this.valoractual =
+              parseInt(this.valoractual) - parseInt(this.valordecambio);
+            return this.valoractual;
+          },
+        },
+        computed: {
+          valorcalculado() {
+            return this.valoractual;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
